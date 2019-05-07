@@ -6,7 +6,7 @@ Python library for interacting with DC Universe API
 Initialize DCUClient class with an e-mail, password, device ID and proxies (optional):
 
 ```python
-client = pydcuniverse.DCUClient(email, password, dev, proxies)
+client = pydcuniverse.DCUClient(email, password, device_id, proxies)
 ```
 
 Using initialized class, request product information with:
