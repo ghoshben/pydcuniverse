@@ -5,11 +5,15 @@ Python library for interacting with DC Universe API
 
 Initialize DCUClient class with an e-mail, password, device ID and proxies (optional):
 
-`client = pydcuniverse.DCUClient(email, password, dev, proxies)`
+```python
+client = pydcuniverse.DCUClient(email, password, dev, proxies)
+```
 
 Using initialized class, request product information with:
 
-`info = client.get_product_info(product_id)`
+```python
+info = client.get_product_info(product_id)
+```
 
 Product ID can be found in the video URL. 
 For example, product ID for `https://www.dcuniverse.com/videos/watch/house-of-el/e949dde5-400f-4aba-ac70-42d1bb009309` is `e949dde5-400f-4aba-ac70-42d1bb009309`.
