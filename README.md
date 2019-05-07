@@ -34,4 +34,4 @@ For example, product ID for `https://www.dcuniverse.com/videos/watch/house-of-el
 # TODO
 - [X] create setup.py
 - [ ] write unit tests
-- [ ] add to PyPI
+- [X] add to PyPI
