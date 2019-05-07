@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="pydcuniverse",
-    version="1.0",
+    version="1.0.1",
     author="espydy",
     author_email="espydy@secmail.pro",
     description="Python library for interacting with DC Universe API",
