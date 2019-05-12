@@ -1,7 +1,6 @@
 # pydcuniverse
 Python library for interacting with DC Universe API
 
-- [pydcuniverse](#pydcuniverse)
 - [Usage](#usage)
   * [Getting product information](#getting-product-information)
     + [Example output](#example-output)
