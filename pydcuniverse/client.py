@@ -6,6 +6,7 @@ Main module for DC Universe API requests
 import requests
 import jwt
 import logging
+import base64
 
 
 class DCUClient(object):
@@ -26,7 +27,7 @@ class DCUClient(object):
         self.password = password
         self.device_key = device_key
         self.proxies = proxies
-        self.user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36"
+        self.user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.27 Safari/537.36"
         self.jwtoken, self.headers = self.login()
 
     def login(self) -> tuple:
@@ -51,7 +52,7 @@ class DCUClient(object):
             cookies_formatted = '; '.join(cookies_list)
             headers = {
                 'cookie': cookies_formatted,
-                'Authorization': f"Token {bearer}",
+                'authorization': f"Token {bearer}",
                 'x-consumer-key': self.device_key,
                 'User-Agent': self.user_agent
             }
@@ -83,6 +84,20 @@ class DCUClient(object):
         }
 
         return product_info
+
+    def acquire_license(self, request_b64: str) -> str:
+        """Returns widevine license for provided request."""
+        url = "https://www.dcuniverse.com/wvd/modlicense"
+        request_bytes = base64.b64decode(request_b64)
+        req = requests.post(url=url, data=request_bytes, headers=self.headers)
+        license_bytes = req.content
+        license_b64 = base64.b64encode(license_bytes).decode("utf-8")
+        if req.status_code == 200:
+            self.logger.info("License accquired!")
+        else:
+            self.logger.error(f"License accquisition failed! {req.status_code}, {req.content}")
+
+        return license_b64
 
     def _get_metadata(self, product_id: str) -> dict:
         """Returns metadata for a given product id."""
@@ -119,8 +134,8 @@ class DCUClient(object):
 
     def _get_content_rights(self, product_id: str) -> str:
         """Returns rights if user is allowed to access given product id."""
-        rights_url = f"https://www.dcuniverse.com/api/5/1/rights/episode/{product_id}?trans=en"
-        req = requests.get(url=rights_url, headers=self.headers)
+        url = f"https://www.dcuniverse.com/api/5/1/rights/episode/{product_id}?trans=en"
+        req = requests.get(url=url, headers=self.headers)
         if req.status_code == 200:
             self.logger.info("Rights accquired!")
             token = req.text[1:-1]

@@ -9,6 +9,8 @@ Initialize DCUClient class with an e-mail, password, device ID and proxies (opti
 client = pydcuniverse.DCUClient(email, password, device_id, proxies)
 ```
 
+## Getting product information
+
 Using initialized class, request product information with:
 
 ```python
@@ -18,7 +20,7 @@ info = client.get_product_info(product_id)
 Product ID can be found in the video URL. 
 For example, product ID for `https://www.dcuniverse.com/videos/watch/house-of-el/e949dde5-400f-4aba-ac70-42d1bb009309` is `e949dde5-400f-4aba-ac70-42d1bb009309`.
 
-## Example output
+### Example output
 ```
 {
     'asset_key': '5c993765',
@@ -32,10 +34,20 @@ For example, product ID for `https://www.dcuniverse.com/videos/watch/house-of-el
 }
 ```
 
+## Acquiring Widevine license
+
+You can use this function to request an EME license for Widevine.
+
+```python
+license = client.acquire_license(challenge)
+```
+
+License and challenge are both base64 encoded strings.
+
 # Device IDs
 - `DA59dtVXYLxajktV`
 
 # TODO
 - [X] create setup.py
-- [ ] write unit tests
 - [X] add to PyPI
+- [ ] write unit tests
