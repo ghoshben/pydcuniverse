@@ -8,6 +8,12 @@ Python library for interacting with DC Universe API
 - [Device IDs](#device-ids)
 - [TODO](#todo)
 
+# Installation
+
+```
+pip install --user pydcuniverse
+```
+
 # Usage
 
 Initialize DCUClient class with an e-mail, password, device ID and proxies (optional):
