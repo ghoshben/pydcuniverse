@@ -1,6 +1,14 @@
 # pydcuniverse
 Python library for interacting with DC Universe API
 
+- [pydcuniverse](#pydcuniverse)
+- [Usage](#usage)
+  * [Getting product information](#getting-product-information)
+    + [Example output](#example-output)
+  * [Acquiring Widevine license](#acquiring-widevine-license)
+- [Device IDs](#device-ids)
+- [TODO](#todo)
+
 # Usage
 
 Initialize DCUClient class with an e-mail, password, device ID and proxies (optional):
