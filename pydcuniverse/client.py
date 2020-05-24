@@ -87,7 +87,7 @@ class DCUClient(object):
 
     def acquire_license(self, request_b64: str) -> str:
         """Returns widevine license for provided request."""
-        url = "https://www.dcuniverse.com/wvd/modlicense"
+        url = "https://wvd.wbdndc.net/modlicense"
         request_bytes = base64.b64decode(request_b64)
         req = requests.post(url=url, data=request_bytes, headers=self.headers)
         license_bytes = req.content
